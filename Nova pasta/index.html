@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SafeCart — Sua casa mais segura e organizada</title>
+  <meta name="description" content="SafeCart transforma suas notas fiscais em inventário da sua casa, avisa sobre recalls e ajuda a repor o que está acabando. Segurança, organização e economia em um só app."/>
+
+  <!-- Favicon & Social preview -->
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="./favicon.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <meta property="og:title" content="SafeCart — Sua casa mais segura e organizada">
+  <meta property="og:description" content="Transforme suas notas fiscais em inventário, receba alertas de recall e reponha no momento certo.">
+  <meta property="og:image" content="./og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    :root { --bg:#0b1020; --card:#0f162d; --muted:#a3adbf; --text:#f2f5fb; --accent:#6d5ef1; --accent-2:#48d2a0; --border:#1f2740; }
+    * { box-sizing: border-box; } html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif; scroll-behavior:smooth; }
+    .container { max-width:1080px; margin:0 auto; padding:20px; }
+    .nav { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+    .brand { font-weight:800; letter-spacing:.2px; }
+    .nav a { color:var(--muted); text-decoration:none; font-size:14px; padding:10px 12px; border-radius:10px; }
+    .nav a:hover { background:rgba(255,255,255,.06); color:var(--text); }
+    .cta { background:linear-gradient(90deg, var(--accent), var(--accent-2)); color:#0b0f19; border:0; padding:12px 16px; border-radius:12px; font-weight:800; cursor:pointer; text-decoration:none; display:inline-block; }
+    .cta.secondary { background:transparent; color:var(--text); border:1px solid var(--border); }
+    .hero { border-radius:24px; padding:40px 24px; background: radial-gradient(1200px 600px at 20% -10%, rgba(109,94,241,.35), transparent), radial-gradient(600px 400px at 90% 10%, rgba(72,210,160,.35), transparent), var(--card); }
+    .hero h1 { font-size:32px; margin:0 0 8px; } .hero p { color:var(--muted); margin:8px 0 16px; font-size:16px; }
+    .hero-grid { display:grid; gap:16px; grid-template-columns: 1.4fr 1fr; }
+    .illus { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid var(--border); border-radius:16px; padding:16px; height:260px; display:grid; grid-template-rows:auto 1fr; gap:10px; }
+    .illus .bar { display:flex; gap:6px; } .illus .dot { width:10px; height:10px; border-radius:50%; background:#ff5f57; } .illus .dot:nth-child(2){ background:#febc2e;} .illus .dot:nth-child(3){ background:#28c840;}
+    .illus .card { background:#0c1328; border:1px solid #1b2340; border-radius:12px; padding:10px; } .illus .row { display:flex; align-items:center; justify-content:space-between; } .illus .muted { color:#94a3b8; font-size:12px; } .illus .pill { border:1px solid #253157; padding:4px 8px; border-radius:999px; font-size:12px; }
+    .section { margin:32px 0; } .section h2 { font-size:24px; margin-bottom:8px; } .section p { color:var(--muted); margin-top:0; }
+    .grid { display:grid; gap:14px; } .cols-3 { grid-template-columns: repeat(3, 1fr); } .cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .feature { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; } .feature h3 { margin:0 0 6px; font-size:18px; } .feature p { margin:0; font-size:14px; color:var(--muted); }
+    .step { display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; } .step .icon { width:28px; height:28px; border-radius:8px; background:rgba(109,94,241,.25); display:flex; align-items:center; justify-content:center; font-weight:800; }
+    .faq { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; } .faq details { border-top:1px solid var(--border); padding-top:10px; margin-top:10px; } .faq details:first-of-type { border-top:0; padding-top:0; margin-top:0; }
+    .form { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; }
+    label { font-size:13px; color:var(--muted); display:block; margin:6px 0 6px; } input, button, textarea { font: inherit; }
+    input[type=text], input[type=email], input[type=tel] { width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#0c1328; color:var(--text); }
+    .consent { display:flex; gap:8px; align-items:flex-start; color:var(--muted); font-size:12px; margin-top:8px; }
+    .msg { display:none; border-radius:10px; padding:10px; margin-top:10px; }
+    .success { background: rgba(16,185,129,.12); color:#d1fae5; border:1px solid rgba(16,185,129,.3); }
+    .error { background: rgba(239,68,68,.12); color:#fecaca; border:1px solid rgba(239,68,68,.3); }
+    .footer { display:flex; gap:16px; align-items:center; justify-content:space-between; color:var(--muted); font-size:12px; padding:16px 0; }
+    .thanks { display:none; background:#0f162d; border:1px solid var(--border); border-radius:16px; padding:28px; }
+    .show { display:block !important; }
+    @media (max-width:900px){ .hero-grid { grid-template-columns:1fr; } .cols-3 { grid-template-columns:1fr; } .cols-2 { grid-template-columns:1fr; } .illus { height:auto; } }
+  </style>
+</head>
+<body>
+  <header class="container nav">
+    <div class="brand">SafeCart</div>
+    <nav>
+      <a href="#beneficios">Benefícios</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="./privacy.html">Privacidade</a>
+      <a href="#faq">FAQ</a>
+      <a class="cta" href="#cadastro">Quero experimentar</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <h1>Sua casa mais <span style="color:var(--accent-2)">segura</span> e <span style="color:var(--accent)">organizada</span> — automaticamente.</h1>
+          <p>O SafeCart transforma suas notas fiscais em inventário da sua casa, avisa sobre recalls e sugere reposição no momento certo — de preferência com refis.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px">
+            <a class="cta" href="#cadastro">Quero experimentar</a>
+            <a class="cta secondary" href="#beneficios">Ver benefícios</a>
+          </div>
+        </div>
+        <div class="illus" aria-hidden="true">
+          <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="card"><div class="row"><div><div style="font-weight:700">NF lida • Supermercado Alegria</div><div class="muted">2 itens adicionados ao inventário</div></div><span class="pill">+ Itens</span></div></div>
+          <div class="card"><div class="row"><div><div style="font-weight:700">⚠️ Recall detectado</div><div class="muted">Creme dental XYZ lote L12345</div></div><span class="pill">Resolver</span></div></div>
+          <div class="card"><div class="row"><div><div style="font-weight:700">Reposição sugerida</div><div class="muted">Pasta dental — previsão 30 dias (Refil First)</div></div><span class="pill">1 clique</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios" class="section">
+      <h2>Benefícios</h2>
+      <p>Segurança, organização e economia — sem planilhas, sem dor de cabeça.</p>
+      <div class="grid cols-3">
+        <div class="feature"><h3>Alertas de recall</h3><p>Você só é avisado do que realmente comprou. Se um lote foi chamado, você vê o passo a passo para resolver.</p></div>
+        <div class="feature"><h3>Inventário automático</h3><p>Escaneie a nota e pronto: itens entram com validade (quando houver), histórico e garantia.</p></div>
+        <div class="feature"><h3>Reposição inteligente</h3><p>O app aprende seu consumo e sugere repor com foco em <strong>refis</strong> — mais econômico e com menos resíduo.</p></div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="section">
+      <h2>Como funciona</h2>
+      <div class="grid">
+        <div class="step"><div class="icon">1</div><div><strong>Escaneie a nota</strong><br/><span class="muted">Aponte a câmera para o QR da NFC-e ou importe o XML.</span></div></div>
+        <div class="step"><div class="icon">2</div><div><strong>Veja seu inventário</strong><br/><span class="muted">Os itens entram com marca, quantidade e validade (quando houver).</span></div></div>
+        <div class="step"><div class="icon">3</div><div><strong>Receba alertas & reponha</strong><br/><span class="muted">Cruzamos com bases oficiais de recall e sugerimos reposição no momento certo.</span></div></div>
+      </div>
+    </section>
+
+    <section id="privacidade" class="section">
+      <h2>Privacidade em primeiro lugar</h2>
+      <div class="grid cols-2">
+        <div class="feature"><h3>Seus dados, sob seu controle</h3><p>Armazenamento local por padrão. Envio à nuvem só com seu consentimento e sempre criptografado.</p></div>
+        <div class="feature"><h3>Transparência</h3><p>Mostramos exatamente o que é compartilhado quando você autoriza uma compra/integração.</p></div>
+      </div>
+    </section>
+
+    <section id="cadastro" class="section">
+      <h2>Entre para a lista e receba acesso primeiro</h2>
+      <p>Deixe seu contato para receber o convite e novidades do SafeCart.</p>
+
+      <form id="lead-form" action="https://formspree.io/f/mvgbvgrb" method="POST" class="form">
+        <input type="hidden" name="_subject" value="SafeCart Waitlist" />
+        <input type="text" name="_gotcha" style="display:none" />
+
+        <div class="grid cols-2">
+          <div>
+            <label for="name">Nome (opcional)</label>
+            <input id="name" name="name" type="text" placeholder="Seu nome" />
+          </div>
+          <div>
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" placeholder="seu@email.com" required />
+          </div>
+        </div>
+
+        <label for="phone">WhatsApp (opcional)</label>
+        <input id="phone" name="phone" type="tel" placeholder="(11) 90000-0000" />
+
+        <div class="consent">
+          <input id="consent" name="consent" value="yes" type="checkbox" required />
+          <label for="consent">Concordo com o uso dos meus dados para contato sobre o SafeCart. Posso cancelar a qualquer momento.</label>
+        </div>
+
+        <div style="display:flex; gap:8px; margin-top:10px">
+          <button class="cta" type="submit">Quero ser avisado</button>
+          <a class="cta secondary" href="#faq">Tirar dúvidas</a>
+        </div>
+
+        <div id="msg-success" class="msg success">Obrigado! Você entrou para a lista. Em breve entraremos em contato.</div>
+        <div id="msg-error" class="msg error">Ops! Não foi possível enviar agora. Tente novamente em instantes.</div>
+      </form>
+
+      <div id="obrigado" class="thanks" aria-live="polite">
+        <h2>Obrigado por se cadastrar!</h2>
+        <p class="muted">Você está na lista de espera do <strong>SafeCart</strong>. Avisaremos assim que houver novidades.</p>
+        <div style="display:flex; gap:8px; margin-top:12px">
+          <a class="cta" href="#beneficios">Ver benefícios</a>
+          <a class="cta secondary" href="#topo" onclick="window.scrollTo({top:0, behavior:'smooth'})">Voltar ao topo</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <h2>Perguntas frequentes</h2>
+      <div class="faq">
+        <details><summary><strong>O que é recall?</strong></summary><p>É quando um fabricante chama de volta um produto por segurança/defeito. O SafeCart verifica se a chamada envolve exatamente o que você comprou e mostra como agir.</p></details>
+        <details><summary><strong>Preciso guardar o XML?</strong></summary><p>Não necessariamente. Você pode só ler o QR da NFC-e. Se preferir, importar o XML ajuda a ter mais detalhes (como lote, quando disponível).</p></details>
+        <details><summary><strong>Funciona sem internet?</strong></summary><p>Você consegue ver seu inventário local. Alertas e reposições dependem de conexão para checar recalls e realizar compras.</p></details>
+        <details><summary><strong>Meus dados estão seguros?</strong></summary><p>Sim. Por padrão, tudo fica no seu dispositivo. Envio à nuvem só com seu consentimento, sempre com criptografia.</p></details>
+      </div>
+    </section>
+
+    <section class="section" style="text-align:center">
+      <h2>Pronto para experimentar?</h2>
+      <p class="muted">Escaneie a próxima nota e veja o SafeCart em ação.</p>
+      <a class="cta" href="#cadastro">Quero meu convite</a>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <div>© <span id="year"></span> SafeCart • Todos os direitos reservados</div>
+    <div><a href="./privacy.html" style="color:var(--muted)">Privacidade</a> • <a href="#faq" style="color:var(--muted)">FAQ</a></div>
+  </footer>
+
+  <script>
+    // Atualiza ano
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Submissão AJAX simples (Formspree) + "Obrigado" na mesma página
+    const form = document.getElementById('lead-form');
+    const successMsg = document.getElementById('msg-success');
+    const errorMsg = document.getElementById('msg-error');
+    const obrigado = document.getElementById('obrigado');
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const consent = document.getElementById('consent').checked;
+      if (!email || !consent) { return; }
+
+      const endpoint = form.action;
+      if (!endpoint || !endpoint.startsWith('http')) {
+        // fallback local (se não configurou Formspree ainda)
+        successMsg.classList.add('show');
+        form.reset();
+        form.style.display = 'none';
+        obrigado.classList.add('show');
+        return;
+      }
+
+      try {
+        const payload = new FormData(form);
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          body: payload,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          form.style.display = 'none';
+          obrigado.classList.add('show');
+          location.hash = '#obrigado';
+        } else {
+          const data = await res.json().catch(()=>({}));
+          errorMsg.textContent = data?.error || 'Ops! Não foi possível enviar agora. Tente novamente.';
+          errorMsg.classList.add('show');
+        }
+      } catch (err) {
+        errorMsg.classList.add('show');
+      }
+    });
+  </script>
+</body>
+</html>
